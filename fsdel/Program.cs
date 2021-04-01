@@ -5,36 +5,33 @@ namespace fsdel
 {
     class Program
     {
-        private const string structureFolderText = "Please specify a structure folder: ";
-        private const string folderToDeleteFromText = "Please specify a folder to delete from: ";
-        
-        static void Main(string[] args)
-        {
-            var structureFolder = string.Empty;
-            var folderToDeleteFrom = string.Empty;
-            if (args.Length > 1)
-            {
-                structureFolder = FolderHelper.GetValidFolderFromArg(args[0], structureFolderText);
-                folderToDeleteFrom = FolderHelper.GetValidFolderFromArg(args[1], folderToDeleteFromText);
-            }
-            else if (args.Length > 0)
-            {
-                structureFolder = FolderHelper.GetValidFolderFromArg(args[0], structureFolderText);
-                folderToDeleteFrom = FolderHelper.GetValidFolder(folderToDeleteFromText);
-            }
-            else
-            {
-                structureFolder = FolderHelper.GetValidFolder(structureFolderText);
-                folderToDeleteFrom = FolderHelper.GetValidFolder(folderToDeleteFromText);
-            }
+        private const string StructureFolderText = "Please specify a structure folder: ";
+        private const string FolderToDeleteFromText = "Please specify a folder to delete from: ";
 
-            Console.WriteLine($"structureFolder: {structureFolder}");
-            Console.WriteLine($"folderToDeleteFrom: {folderToDeleteFrom}");
+        private static void Main(string[] args)
+        {
+            string structureFolder;
+            string folderToDeleteFrom;
+            switch (args.Length)
+            {
+                case > 1:
+                    structureFolder = FolderHelper.GetValidFolderFromArg(args[0], StructureFolderText);
+                    folderToDeleteFrom = FolderHelper.GetValidFolderFromArg(args[1], FolderToDeleteFromText);
+                    break;
+                case > 0:
+                    structureFolder = FolderHelper.GetValidFolderFromArg(args[0], StructureFolderText);
+                    folderToDeleteFrom = FolderHelper.GetValidFolder(FolderToDeleteFromText);
+                    break;
+                default:
+                    structureFolder = FolderHelper.GetValidFolder(StructureFolderText);
+                    folderToDeleteFrom = FolderHelper.GetValidFolder(FolderToDeleteFromText);
+                    break;
+            }
 
             var folderStructure = FolderHelper.BuildFolderStructure(structureFolder);
             FolderHelper.DeleteByFolderStructure(folderToDeleteFrom, folderStructure);
 
-            Console.Read();
+            Console.WriteLine("Success");
         }
     }
 }

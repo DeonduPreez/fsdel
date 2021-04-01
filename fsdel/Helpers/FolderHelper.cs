@@ -15,11 +15,13 @@ namespace fsdel.Helpers
                 directory = Directory.GetCurrentDirectory() + directory[1..];
             }
 
-            if (!Directory.Exists(directory))
+            if (Directory.Exists(directory))
             {
-                Console.Write(cwText);
-                directory = GetValidFolder(cwText);
+                return directory;
             }
+
+            Console.Write(cwText);
+            directory = GetValidFolder(cwText);
 
             return directory;
         }
