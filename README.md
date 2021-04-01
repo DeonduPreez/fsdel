@@ -1,0 +1,2 @@
+# fsdel
+Folder Structure Deleter.
