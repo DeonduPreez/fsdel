@@ -23,3 +23,5 @@ e.g.
 
 
 This tool was created because I accidentally extracted a zip file into the wrong folder. It merged into all subdirectories and I'm too lazy to delete every file manually
+
+## I am open to any pull requests to improve this tool
