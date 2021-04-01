@@ -62,7 +62,6 @@ namespace fsdel.Helpers
             
             var folderStructure = new FolderStructure()
             {
-                DirectoryPath = directory,
                 DirectoryName = directory[(directory.LastIndexOf(@"\", StringComparison.Ordinal) + 1)..],
                 Files = Directory.GetFiles(directory).Select(file => file[(file.LastIndexOf(@"\", StringComparison.Ordinal) + 1)..]).ToArray(),
                 SubDirectories = subDirs
